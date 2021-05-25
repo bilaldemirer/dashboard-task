@@ -1,0 +1,23 @@
+{
+  "presets": ["env", "react-app", "@babel/preset-flow"],
+  "plugins": [
+    [
+      "module-resolver",
+      "@babel/plugin-proposal-optional-chaining",
+      {
+        "root": ["./src"],
+        "alias": {
+          "redux": "redux",
+          "sagas": "redux/sagas",
+          "actions": "redux/actions",
+          "reducers": "redux/reducers",
+
+          "resources": "resources",
+          "services": "services",
+          "screens": "screens",
+          "utils": "utils"
+        }
+      }
+    ]
+  ]
+}
