@@ -1,40 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DashboardChart from '../../components/Charts/DashboardChart';
-import DashboardTable from '../../components/Tables/DashboardTable';
-import {
-  Badge,
-  Button,
-  ButtonGroup,
-  ButtonToolbar,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Col,
-  Progress,
-  Row,
-  Table
-} from 'reactstrap';
+import DashboardChart from '../Charts/DashboardChart';
+import DashboardTable from '../Tables/DashboardTable';
 
 import { getDashboardSummaryAction } from '../../redux/actions/dashboard';
 import { SelectorType } from '../../redux/reducers/types';
-import Data from '../../components/Data'
 
 type SelectedType = {
   dashboardSummary: any;
 };
 
-function Dashboard() {
+function Data() {
   const dispatch = useDispatch();
 
   const { dashboardSummary } = useSelector<SelectorType, SelectedType>(state => ({
     dashboardSummary: state.applicantReducer.dashboardSummary
   }));
 
-
+  console.log('dashboar: ', dashboardSummary);
 
   const FUN_RACE_3D = dashboardSummary.filter(x => x.app === 'Fun Race 3D');
   const FUN_RACE_3D_ANDROID = FUN_RACE_3D.filter(x => x.platform === 'Android');
@@ -49,34 +33,27 @@ function Dashboard() {
   const JELLY_DYE_IOS = JELLY_DYE.filter(x => x.platform === 'iOS');
 
 
+  console.log('ios: ', JELLY_DYE_IOS);
 
-  
-
-  console.log('dashboar: ', dashboardSummary);
 
   useEffect(() => {
     getDashboardSummaryAction(dispatch);
   }, []);
   return (
-    <>
-    <div>
-     <Row>
-       <Col>
-       {FUN_RACE_3D && <DashboardChart summaryByGame={FUN_RACE_3D}  summaryByAndroid={FUN_RACE_3D_ANDROID} summaryByIos={FUN_RACE_3D_IOS}   />}
-      
+   
      
-       {FOLD_PUZZLE && <DashboardChart summaryByGame={FOLD_PUZZLE} summaryByAndroid={FOLD_PUZZLE_ANDROID} summaryByIos={FOLD_PUZZLE_IOS}  />}
-     
-      
-       {JELLY_DYE && <DashboardChart summaryByGame={JELLY_DYE} summaryByAndroid={JELLY_DYE_ANDROID} summaryByIos={JELLY_DYE_IOS}   />}
-      </Col>
-     </Row>
+        
+        [FUN_RACE_3D]
+        [FUN_RACE_3D_ANDROID]
+        [FUN_RACE_3D_IOS]
+        [FOLD_PUZZLE]
+        [FOLD_PUZZLE_ANDROID]
+        [FOLD_PUZZLE_IOS]
+        [JELLY_DYE]
+        [JELLY_DYE_ANDROID]
+        [JELLY_DYE_IOS]
 
-      {dashboardSummary && <DashboardTable data={dashboardSummary} />}
-     
-    </div>
-    </>
   );
 }
 
-export default Dashboard;
+export default Data;

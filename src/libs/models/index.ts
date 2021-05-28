@@ -7,5 +7,7 @@ export type DashboardSummaryResponse = {
     impressions: number;
     installs: number;
     platform: string;
+    revenue: number;
   };
+
 

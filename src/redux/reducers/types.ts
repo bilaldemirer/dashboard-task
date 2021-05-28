@@ -1,4 +1,4 @@
-import  { DashboardSummaryResponse } from '../../models/index';
+import  { DashboardSummaryResponse } from '../../libs/models/index';
 // SelectorTypes
 export type SelectorType = {
   applicantReducer: DashboardReducerType;
