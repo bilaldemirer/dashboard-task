@@ -54,7 +54,8 @@ const DashboardTable = (props: Prop) => {
     },
     {
       Header: 'Revenue',
-      accessor: 'revenue',
+      accessor: ({ revenue }: any) =>
+      revenue ? revenue.toFixed(2) : '',
       id: 'revenue'
     },
   ];

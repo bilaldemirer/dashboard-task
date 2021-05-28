@@ -13,8 +13,10 @@ import {
   Col,
   Progress,
   Row,
-  Table
+  Table,
+  CardText
 } from 'reactstrap';
+import { Box } from '@material-ui/core';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,26 +31,18 @@ type SelectedType = {
 
 type Prop = {
   summaryByGame: DashboardSummaryResponse[];
-  summaryByAndroid: DashboardSummaryResponse[];
-  summaryByIos: DashboardSummaryResponse[];
 };
 
 const DashboardChart = (props: Prop) => {
-  const { summaryByGame, summaryByAndroid, summaryByIos } = props;
+  const { summaryByGame } = props;
 
-  console.log(
-    'byplatform: ',
-    summaryByIos.map(x => x.date)
-  );
-
-  const funrace = [summaryByGame.filter(x => x.app === 'Android')];
-
-  console.log('summary: ', ...summaryByGame.map(x => x.date));
+  const appName = summaryByGame.map(x => x.app).find(x => x);
+  console.log('app: ', appName);
 
   return (
-    <div className="chart-wrapper">
+    <div>
       {summaryByGame && (
-        <div>
+        <Box>
           <Row>
             <Col>
               <Line
@@ -124,56 +118,56 @@ const DashboardChart = (props: Prop) => {
             </Col>
           </Row>
           <Row>
-          <Col>
-            <Line
-              data={{
-                labels: [
-                  ...summaryByGame
-                    .map(x => x.date)
-                    .filter((i, index) => index < 15)
-                    .map(i => i)
-                ],
-                datasets: [
-                  {
-                    label: 'Installs',
-                    data: [...summaryByGame.map(x => x.installs)]
-                  }
-                ]
-              }}
-              height={400}
-              width={600}
-              options={{
-                maintainAspectRatio: false
-              }}
-              type="line"
-            />
-          </Col>
-          <Col>
-            <Line
-              data={{
-                labels: [
-                  ...summaryByGame
-                    .map(x => x.date)
-                    .filter((i, index) => index < 15)
-                    .map(i => i)
-                ],
-                datasets: [
-                  {
-                    label: 'Dau',
-                    data: [...summaryByGame.map(x => x.dau)]
-                  }
-                ]
-              }}
-              height={400}
-              width={600}
-              options={{
-                maintainAspectRatio: false
-              }}
-              type="line"
-            />
-          </Col>
+            <Col>
+              <Line
+                data={{
+                  labels: [
+                    ...summaryByGame
+                      .map(x => x.date)
+                      .filter((i, index) => index < 15)
+                      .map(i => i)
+                  ],
+                  datasets: [
+                    {
+                      label: 'Installs',
+                      data: [...summaryByGame.map(x => x.installs)]
+                    }
+                  ]
+                }}
+                height={400}
+                width={600}
+                options={{
+                  maintainAspectRatio: false
+                }}
+                type="line"
+              />
+            </Col>
+            <Col>
+              <Line
+                data={{
+                  labels: [
+                    ...summaryByGame
+                      .map(x => x.date)
+                      .filter((i, index) => index < 15)
+                      .map(i => i)
+                  ],
+                  datasets: [
+                    {
+                      label: 'Dau',
+                      data: [...summaryByGame.map(x => x.dau)]
+                    }
+                  ]
+                }}
+                height={400}
+                width={600}
+                options={{
+                  maintainAspectRatio: false
+                }}
+                type="line"
+              />
+            </Col>
           </Row>
-        </div>
+        </Box>
       )}
     </div>
   );

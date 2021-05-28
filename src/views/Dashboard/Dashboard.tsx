@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardChart from '../../components/Charts/DashboardChart';
 import DashboardTable from '../../components/Tables/DashboardTable';
@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
   Col,
+  Container,
   Progress,
   Row,
   Table
@@ -21,7 +22,9 @@ import {
 
 import { getDashboardSummaryAction } from '../../redux/actions/dashboard';
 import { SelectorType } from '../../redux/reducers/types';
-import Data from '../../components/Data'
+
+import { AppNameEnum, ViewEnum } from '../../libs/models/index';
+import { Box } from '@material-ui/core';
 
 type SelectedType = {
   dashboardSummary: any;
@@ -34,7 +37,8 @@ function Dashboard() {
     dashboardSummary: state.applicantReducer.dashboardSummary
   }));
 
-
+  const [appName, SetAppName] = useState('Fun Race 3D');
+  const [changeView, setChangeView] = useState('Table View');
 
   const FUN_RACE_3D = dashboardSummary.filter(x => x.app === 'Fun Race 3D');
   const FUN_RACE_3D_ANDROID = FUN_RACE_3D.filter(x => x.platform === 'Android');
@@ -48,33 +52,42 @@ function Dashboard() {
   const JELLY_DYE_ANDROID = JELLY_DYE.filter(x => x.platform === 'Android');
   const JELLY_DYE_IOS = JELLY_DYE.filter(x => x.platform === 'iOS');
 
-
-
-  
-
   console.log('dashboar: ', dashboardSummary);
+  console.log('view: ', changeView);
 
   useEffect(() => {
     getDashboardSummaryAction(dispatch);
   }, []);
   return (
     <>
-    <div>
-     <Row>
-       <Col>
-       {FUN_RACE_3D && <DashboardChart summaryByGame={FUN_RACE_3D}  summaryByAndroid={FUN_RACE_3D_ANDROID} summaryByIos={FUN_RACE_3D_IOS}   />}
-      
-     
-       {FOLD_PUZZLE && <DashboardChart summaryByGame={FOLD_PUZZLE} summaryByAndroid={FOLD_PUZZLE_ANDROID} summaryByIos={FOLD_PUZZLE_IOS}  />}
-     
-      
-       {JELLY_DYE && <DashboardChart summaryByGame={JELLY_DYE} summaryByAndroid={JELLY_DYE_ANDROID} summaryByIos={JELLY_DYE_IOS}   />}
-      </Col>
-     </Row>
+      <Box>
+        <CardHeader>
+          <ButtonGroup size="lg" block className='offset-5' >
+            <Button  onClick={() => setChangeView('Table View')}>Table View</Button>
+            <Button onClick={() => setChangeView('Line View')}>Line View</Button>
+          </ButtonGroup>
+        </CardHeader>
 
-      {dashboardSummary && <DashboardTable data={dashboardSummary} />}
-     
-    </div>
+        {changeView === 'Table View' ? (
+          <Card>{dashboardSummary && <DashboardTable data={dashboardSummary} />}</Card>
+        ) : null}
+        {changeView === 'Line View' ? (
+          <Card>
+            <CardHeader>
+              <ButtonGroup>
+                <Button onClick={() => SetAppName('Fun Race 3D')}>Fun Race 3D</Button>
+                <Button onClick={() => SetAppName('Fold Puzzle')}>Fold Puzzle</Button>
+                <Button onClick={() => SetAppName('Jelly Dye')}>Jelly Dye</Button>
+              </ButtonGroup>
+            </CardHeader>
+            <CardBody>
+              {appName === 'Fun Race 3D' ? <DashboardChart summaryByGame={FUN_RACE_3D} /> : ''}
+              {appName === 'Fold Puzzle' ? <DashboardChart summaryByGame={FOLD_PUZZLE} /> : ''}
+              {appName === 'Jelly Dye' ? <DashboardChart summaryByGame={JELLY_DYE} /> : ''}
+            </CardBody>
+          </Card>
+        ) : null}
+      </Box>
     </>
   );
 }
