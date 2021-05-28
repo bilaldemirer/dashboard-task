@@ -2,14 +2,11 @@ import { MyReactTable } from '@doggoapp/doggo-ts-admin';
 import { Box } from '@material-ui/core';
 import { useRef, useState } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
-import TableButtons from '../../ButtonGroups/tableButtons';
 
-type Prop = {
-  data: [];
-};
 
-const DashboardTable = (props: Prop) => {
-  const { data } = props;
+
+
+const TableButtons = () => {
 
   const [showClicks, setShowClick] = useState(true);
   const [showRevenue, setShowRevenue] = useState(true);
@@ -83,51 +80,34 @@ const DashboardTable = (props: Prop) => {
 
   return (
     <>
-      <Box>
-        <ButtonGroup className="m-3">
-          <Button color={showDate ? 'success' : 'danger'} onClick={() => setShowDate(!showDate)}>
+        <ButtonGroup className='m-3'>
+        <Button color={showDate ? 'success' : 'danger'} onClick={() => setShowDate(!showDate)}>
             Date
           </Button>
-          <Button
-            color={showClicks ? 'success' : 'danger'}
-            onClick={() => setShowClick(!showClicks)}
-          >
+          <Button color={showClicks ? 'success' : 'danger'} onClick={() => setShowClick(!showClicks)}>
             Clicks
           </Button>
           <Button color={showDau ? 'success' : 'danger'} onClick={() => setShowDau(!showDau)}>
             Dau
           </Button>
-          <Button
-            color={showImpressions ? 'success' : 'danger'}
-            onClick={() => setShowImpressions(!showImpressions)}
-          >
+          <Button color={showImpressions ? 'success' : 'danger'} onClick={() => setShowImpressions(!showImpressions)}>
             Impressions
           </Button>
-          <Button
-            color={showInstalls ? 'success' : 'danger'}
-            onClick={() => setShowInstalls(!showInstalls)}
-          >
+          <Button color={showInstalls ? 'success' : 'danger'} onClick={() => setShowInstalls(!showInstalls)}>
             Installs
-          </Button>
-          <Button
-            color={showRevenue ? 'success' : 'danger'}
-            onClick={() => setShowRevenue(!showRevenue)}
-          >
+          </Button> 
+          <Button color={showRevenue ? 'success' : 'danger'} onClick={() => setShowRevenue(!showRevenue)}>
             Revenue
           </Button>
-          <Button color={showApp ? 'success' : 'danger'} onClick={() => setShowApp(!showApp)}>
+          <Button color={showApp? 'success' : 'danger'} onClick={() => setShowApp(!showApp)}>
             App
           </Button>
-          <Button
-            color={showPlatform ? 'success' : 'danger'}
-            onClick={() => setShowPlatform(!showPlatform)}
-          >
-            Platform
+          <Button color={showPlatform ? 'success' : 'danger'} onClick={() => setShowPlatform(!showPlatform)}>
+           Platform
           </Button>
+          {columns}
         </ButtonGroup>
-        <MyReactTable ref={submittedTable} data={data || []} columns={columns} />
-      </Box>
     </>
   );
 };
-export default DashboardTable;
+export default TableButtons;

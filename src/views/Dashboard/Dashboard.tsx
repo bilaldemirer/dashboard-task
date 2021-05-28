@@ -40,17 +40,12 @@ function Dashboard() {
   const [appName, SetAppName] = useState('Fun Race 3D');
   const [changeView, setChangeView] = useState('Table View');
 
+
   const FUN_RACE_3D = dashboardSummary.filter(x => x.app === 'Fun Race 3D');
-  const FUN_RACE_3D_ANDROID = FUN_RACE_3D.filter(x => x.platform === 'Android');
-  const FUN_RACE_3D_IOS = FUN_RACE_3D.filter(x => x.platform === 'iOS');
 
   const FOLD_PUZZLE = dashboardSummary.filter(x => x.app === 'Fold Puzzle');
-  const FOLD_PUZZLE_ANDROID = FOLD_PUZZLE.filter(x => x.platform === 'Android');
-  const FOLD_PUZZLE_IOS = FOLD_PUZZLE.filter(x => x.platform === 'iOS');
 
   const JELLY_DYE = dashboardSummary.filter(x => x.app === 'Jelly Dye');
-  const JELLY_DYE_ANDROID = JELLY_DYE.filter(x => x.platform === 'Android');
-  const JELLY_DYE_IOS = JELLY_DYE.filter(x => x.platform === 'iOS');
 
   console.log('dashboar: ', dashboardSummary);
   console.log('view: ', changeView);
@@ -62,22 +57,22 @@ function Dashboard() {
     <>
       <Box>
         <CardHeader>
-          <ButtonGroup size="lg" block className='offset-5' >
-            <Button  onClick={() => setChangeView('Table View')}>Table View</Button>
+          <ButtonGroup size="lg" block className="offset-5">
+            <Button onClick={() => setChangeView('Table View')}>Table View</Button>
             <Button onClick={() => setChangeView('Line View')}>Line View</Button>
           </ButtonGroup>
         </CardHeader>
 
         {changeView === 'Table View' ? (
-          <Card>{dashboardSummary && <DashboardTable data={dashboardSummary} />}</Card>
+          <Card>{dashboardSummary && <DashboardTable data={dashboardSummary}/>}</Card>
         ) : null}
         {changeView === 'Line View' ? (
           <Card>
             <CardHeader>
               <ButtonGroup>
-                <Button onClick={() => SetAppName('Fun Race 3D')}>Fun Race 3D</Button>
-                <Button onClick={() => SetAppName('Fold Puzzle')}>Fold Puzzle</Button>
-                <Button onClick={() => SetAppName('Jelly Dye')}>Jelly Dye</Button>
+                <Button color={appName === 'Fun Race 3D' ? 'success' : 'danger'} onClick={() => SetAppName('Fun Race 3D')}>Fun Race 3D</Button>
+                <Button color={appName === 'Fold Puzzle' ? 'success' : 'danger'} onClick={() => SetAppName('Fold Puzzle')}>Fold Puzzle</Button>
+                <Button color={appName === 'Jelly Dye' ? 'success' : 'danger'} onClick={() => SetAppName('Jelly Dye')}>Jelly Dye</Button>
               </ButtonGroup>
             </CardHeader>
             <CardBody>
