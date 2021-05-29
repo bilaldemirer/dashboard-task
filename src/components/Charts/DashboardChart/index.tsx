@@ -66,8 +66,7 @@ const DashboardChart = (props: Prop) => {
                       labels: [
                         ...summaryByGame
                           .map(x => x.date)
-                          .filter((i, index) => index < 15)
-                          .map(i => i)
+                         .slice(0, 15)
                       ],
                       datasets: [
                         {
@@ -92,8 +91,7 @@ const DashboardChart = (props: Prop) => {
                       labels: [
                         ...summaryByGame
                           .map(x => x.date)
-                          .filter((i, index) => index < 15)
-                          .map(i => i)
+                          .slice(0, 14)
                       ],
                       datasets: [
                         {
@@ -118,8 +116,7 @@ const DashboardChart = (props: Prop) => {
                       labels: [
                         ...summaryByGame
                           .map(x => x.date)
-                          .filter((i, index) => index < 15)
-                          .map(i => i)
+                          .slice(0, 14)
                       ],
                       datasets: [
                         {
@@ -144,8 +141,7 @@ const DashboardChart = (props: Prop) => {
                       labels: [
                         ...summaryByGame
                           .map(x => x.date)
-                          .filter((i, index) => index < 15)
-                          .map(i => i)
+                          .slice(0, 14)
                       ],
                       datasets: [
                         {
@@ -170,8 +166,7 @@ const DashboardChart = (props: Prop) => {
                       labels: [
                         ...summaryByGame
                           .map(x => x.date)
-                          .filter((i, index) => index < 15)
-                          .map(i => i)
+                          .slice(0, 14)
                       ],
                       datasets: [
                         {
