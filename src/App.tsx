@@ -1,7 +1,6 @@
 import { Route, Switch, Router } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
 import { createBrowserHistory } from 'history';
-import '@doggoapp/doggo-ts-admin/dist/index.css'
 import '@coreui/icons/css/coreui-icons.min.css'
 import 'flag-icon-css/css/flag-icon.min.css'
 import 'font-awesome/css/font-awesome.min.css'

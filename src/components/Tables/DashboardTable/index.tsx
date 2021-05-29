@@ -2,7 +2,6 @@ import { MyReactTable } from '@doggoapp/doggo-ts-admin';
 import { Box } from '@material-ui/core';
 import { useRef, useState } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
-import TableButtons from '../../ButtonGroups/tableButtons';
 
 type Prop = {
   data: [];

@@ -1,6 +1,6 @@
 {
-  "name": "doggo-hr-admin",
-  "version": "6.13.4",
+  "name": "dashboard-task",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",

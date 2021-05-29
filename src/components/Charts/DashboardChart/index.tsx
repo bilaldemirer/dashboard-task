@@ -1,34 +1,15 @@
-import { Component, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
-  Badge,
   Button,
   ButtonGroup,
-  ButtonToolbar,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
   Col,
-  Progress,
   Row,
-  Table,
-  CardText,
   Container
 } from 'reactstrap';
 import { Box } from '@material-ui/core';
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
-import { useDispatch, useSelector } from 'react-redux';
-import { SelectorType } from '../../../redux/reducers/types';
-import { getDashboardSummaryAction } from '../../../redux/actions/dashboard';
-import { indexOf } from 'core-js/core/array';
 import { DashboardSummaryResponse } from '../../../libs/models';
 
-type SelectedType = {
-  dashboardSummary: any;
-};
 
 type Prop = {
   summaryByGame: DashboardSummaryResponse[];
@@ -42,8 +23,6 @@ const DashboardChart = (props: Prop) => {
   const [showImpressions, setShowImpressions] = useState(true);
   const [showInstalls, setShowInstalls] = useState(true);
   const [showDau, setShowDau] = useState(true);
-  const appName = summaryByGame.map(x => x.app).find(x => x);
-  console.log('app: ', appName);
 
   return (
     <div>

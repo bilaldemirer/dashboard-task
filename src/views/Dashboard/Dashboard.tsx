@@ -4,26 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import DashboardChart from '../../components/Charts/DashboardChart';
 import DashboardTable from '../../components/Tables/DashboardTable';
 import {
-  Badge,
   Button,
   ButtonGroup,
-  ButtonToolbar,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  CardTitle,
-  Col,
-  Container,
-  Progress,
-  Row,
-  Table
 } from 'reactstrap';
 
 import { getDashboardSummaryAction } from '../../redux/actions/dashboard';
 import { SelectorType } from '../../redux/reducers/types';
 
-import { AppNameEnum, ViewEnum } from '../../libs/models/index';
 import { Box } from '@material-ui/core';
 
 type SelectedType = {
@@ -47,8 +37,6 @@ function Dashboard() {
 
   const JELLY_DYE = dashboardSummary.filter(x => x.app === 'Jelly Dye');
 
-  console.log('dashboar: ', dashboardSummary);
-  console.log('view: ', changeView);
 
   useEffect(() => {
     getDashboardSummaryAction(dispatch);
